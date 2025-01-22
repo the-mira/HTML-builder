@@ -11,11 +11,12 @@ const secretFolderPath = path.join(__dirname, 'secret-folder');
         const filePath = path.join(secretFolderPath, file.name);
         const stats = await fs.stat(filePath);
 
-        const fileName = path.parse(file.name).name;
-        const fileExtension = path.extname(file.name).slice(1);
+        const fileInfo = path.parse(file.name);
+        const fileName = fileInfo.name;
+        const fileExt = fileInfo.ext.slice(1);
         const fileSizeInKB = (stats.size / 1024).toFixed(3);
 
-        console.log(`${fileName} - ${fileExtension} - ${fileSizeInKB}kb`);
+        console.log(`${fileName} - ${fileExt} - ${fileSizeInKB}kb`);
       }
     }
   } catch (err) {
